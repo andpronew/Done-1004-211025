@@ -1,0 +1,11 @@
+{
+"bucket": "binance-history-bucket",
+"prefix": "data",
+"local_dir": "./local_binance",
+"manifest_name": "manifest.json",
+"sleep_seconds": 120,
+"max_manifest_entries": 500,
+"cloudfront_domain": "d2tg388r040kxc.cloudfront.net",
+"download_dir": "./downloaded",
+"state_file": "./.bn_downloaded"
+}

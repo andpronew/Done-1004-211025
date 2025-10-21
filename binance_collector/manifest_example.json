@@ -1,0 +1,19 @@
+[
+  {
+    "name": "bn_BTCUSDT_20250909_120000.json.gz",
+    "key": "data/bn_BTCUSDT_20250909_120000.json.gz",
+    "t": 1694251200000,
+    "size": 15324,
+    "sha256": "3a7bd3e2c8f9a1b4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8",
+    "compressed": true
+  },
+  {
+    "name": "bn_BTCUSDT_20250909_115800.json.gz",
+    "key": "data/bn_BTCUSDT_20250909_115800.json.gz",
+    "t": 1694251080000,
+    "size": 14890,
+    "sha256": "b1c2d3e4f5a6b7c83a7bd3e2c8f9a1b4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a",
+    "compressed": true
+  }
+]
+

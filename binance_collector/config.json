@@ -1,0 +1,17 @@
+{
+  "bucket": "binance-history-bucket",
+  "prefix": "data",
+  "local_dir": "./local_binance",
+  "manifest_name": "manifest.json",
+  "sleep_seconds": 120,
+  "max_manifest_entries": 500,
+  "cloudfront_domain": "d2tg388r040kxc.cloudfront.net",
+  "download_dir": "./downloaded",
+  "state_file": "./.bn_downloaded",
+  "symbol": "BTCUSDT",
+  "use_signed_api": false,
+  "api_key": "R8PddwMBYtxGLb5PnUtSxUZYSiC1ctfnbHbPnXFiA5ai7edkH31RS58BWgUTuvvI",
+  "secret_key": "APUzWzuHp2drAFRZN86JjB5gHBNlrU4nZdWaD1VP9DykxKVwIvM6xZRVYxYy3tbv",
+  "binance_base": "https://testnet.binance.vision"
+}
+
