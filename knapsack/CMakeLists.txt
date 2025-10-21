@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.10)
+project(KnapsackProject)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+enable_testing()
+
+add_subdirectory(src)
+
+# Add GoogleTest from external folder
+add_subdirectory(external/googletest)
+add_subdirectory(tests)
+
