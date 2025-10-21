@@ -1,0 +1,148 @@
+
+=== Bot Andr PROJECT CONTEXT (UPDATED) ===
+Date: 2025-08-26  (snapshot from conversation)
+
+PURPOSE
+- Trading ladder market-making bot for Binance (Testnet during dev).
+- Key idea: place passive (maker) LIMIT buy and sell orders, capture spread when matched.
+- Orders must have zero maker commission for profitable operation — strategy enforces this check.
+
+LOCATION / REPO LAYOUT (relative to project root)
+- CMakeLists.txt
+- config.json
+- src/
+    - main.cpp
+    - bot.cpp
+    - binance_client.cpp
+    - ladder_strategy.cpp
+    - logging.cpp
+- include/
+    - binance_client.hpp
+    - ladder_strategy.h
+    - logging.h
+- logs/
+    - bot_YYYY-MM-DD_HHMMSS.txt  (main runtime log)
+    - orders.txt                 (append-only raw orders and fills)
+    - orders_sorted.txt          (sorted historic view with profit columns)
+- build/ (out-of-source build)
+
+BUILD NOTES
+- CMake minimum 3.16, C++17
+- Requires: libcurl, OpenSSL (Crypto), Threads, nlohmann_json
+- CMakeLists.txt must find OpenSSL and link OpenSSL::Crypto (we added target_link_libraries(bot PRIVATE OpenSSL::Crypto))
+- If changing OpenSSL detection or flags, update CMakeLists.txt accordingly.
+
+CONFIG (config.json)
+Example currently used in tests:
+{
+  "api_key": "REDACTED",
+  "secret_key": "REDACTED",
+  "sandbox": true,
+  "symbol": "BTCFDUSDT",
+  "ladder_size": 5,
+  "ladder_step": 1.0,
+  "order_size": 0.0001,
+  "poll_interval": 5,
+  "aggressive_limit_test": true
+}
+- IMPORTANT: symbol is read from config.json and used everywhere. To change trading pair, edit symbol here.
+- sandbox=true keeps requests on Binance Testnet. Set to false to use production API and real funds (be careful!).
+
+CURRENT IMPLEMENTATION HIGHLIGHTS
+1) binance_client.cpp / .hpp
+   - Implemented HMAC-SHA256 signature using OpenSSL (HMAC_CTX_new, EVP_sha256).
+   - perform_request wraps curl and logs url/HTTP code/response preview.
+   - build_query_string, signed_query helper functions in place.
+   - get_trade_fee(symbol) queries /sapi/v1/asset/tradeFee and returns TradeFee struct.
+   - is_zero_commission_pair(symbol) returns true immediately in sandbox mode (to allow strategy testing), otherwise queries get_trade_fee.
+   - place_order overloads:
+       - place_order(symbol, side, type, price_str, qty_str, time_in_force) -> string response
+       - place_order(symbol, side, type, double price, double qty) -> performs safety checks to remain maker and checks zero commission, then calls string overload.
+   - get_open_orders, get_order, get_book_ticker implemented.
+
+2) ladder_strategy.h / .cpp
+   - LadderStrategy now:
+       - reads parameters from config.json via bot.cpp
+       - places ladder_size buys below mid_price and ladder_size sells above mid_price
+       - tracks placed orders in tracked_orders_ (map<orderId, json>)
+       - appends created and FILLED orders to logs/orders.txt (append mode)
+       - writes sorted historic view into logs/orders_sorted.txt (with columns: timestamp | SYMBOL | SIDE | PRICE | QTY | executedQty | ORDERID | STATUS | clientOrderId | commission | profit | profit_accum)
+       - accumulates profit (profit_accum) computed when matches buy<->sell pairs (FIFO buy queue and pairing policy)
+       - supports partial fills: executedQty column is set and FILLED vs NEW recorded; partial fills are written/updated.
+   - The run() loop:
+       - calls place_ladder_orders(mid_price) once initially
+       - polling loop: poll_open_orders() every poll_interval seconds
+       - dynamic refill logic: if tracked_orders_.size() < desired (ladder_size_*2), it computes missing pairs and calls place_ladder_orders(now_price, pairs_needed)
+   - Added internal buy_queue_ (FIFO) to calculate expected and realised profit:
+       - expected_profit_if_sell_at(double sell_price, double qty) uses buy_queue_ to compute expected profit if a sell at given price would be matched against queued buys (FIFO).
+       - Before placing a SELL limit order the strategy computes expected profit and only places SELLs expected to give non-negative profit (can be tuned to require positive margin after commission).
+   - Commission handling:
+       - commission is extracted from order JSON (fills[].commission and commissionAsset or commissionQuote when available). For testnet, commission often 0.
+       - commission is recorded per order in orders.txt and incorporated when computing profit.
+
+3) Logging
+   - Primary general runtime log: logs/bot_YYYY-MM-DD_HHMMSS.txt (unchanged).
+   - New append-only orders log: logs/orders.txt (contains each order creation and fill lines as they happen).
+   - New derived sorted file: logs/orders_sorted.txt — contains tabular lines sorted by ORDERID (ascending) and with calculated profit/profit_accum columns.
+
+KNOWN ISSUES & RECENT FIXES
+- Linker errors due to missing OpenSSL symbols fixed by including <openssl/hmac.h> and linking OpenSSL::Crypto.
+- hmac_sha256_hex must use EVP_MAX_MD_SIZE — ensure OpenSSL headers available.
+- Earlier mismatches between function constness (now_timestamp_ms was non-const) fixed — now it's declared const in header to call from const methods (or used static helper) — ensure binance_client.hpp matches binance_client.cpp.
+- is_zero_commission_pair: in sandbox mode we currently assume zero commission. WARNING: Testnet may still return HTTP 404 for /sapi/v1/asset/tradeFee so sandbox shortcut avoids false negatives.
+- Orders previously not being logged to orders.txt — fixed by creating/using ofstream order_log_file_ opened with ios::app. Ensure logs/ directory exists and executable has write permission.
+
+TO DO / RECOMMENDATIONS (for clean handover)
+- Ensure include guards and signatures in binance_client.hpp exactly match implemented methods in cpp (const correctness).
+- Ensure ladder_strategy.h includes <set> and <thread> if used.
+- Add unit tests or a dry-run flag (dry-run: true will not actually place orders, only simulate) — helpful for safety during testing.
+- Confirm profit matching policy (FIFO buys matched with sells) is what you expect. Current implementation pairs closed SELLs with earliest unmatched BUYs (FIFO). If you need per-order pairing or more advanced position tracking, update buy_queue_ logic.
+- Add protection to not place SELLs that would create realized negative profit (current code computes expected profit and skips SELLs with negative expected profit).
+- Consider persisting tracked_orders_ and profit_accum to disk so bot restart recovers state.
+- Consider rate limit handling on Binance API (backoff on 429 / 418 errors).
+
+HOW I RECOMMEND YOU MOVE TO A NEW CHAT (Bot Andr)
+1) Download the file produced with this context (below).
+2) Start a new chat named "Bot Andr".
+3) Upload the file into the new chat so I (assistant) see exact current state and can continue without losing conversation history.
+4) Also attach the latest source files (binance_client.cpp/hpp, ladder_strategy.cpp/h, bot.cpp, CMakeLists.txt) if you want me to create precise diffs/patches.
+
+BUILD / CLEAN ADVICE (what rm -rf CMakeFiles CMakeCache.txt bot removes)
+- rm -rf CMakeFiles CMakeCache.txt bot
+  - removes cmake generated build metadata (CMakeFiles, CMakeCache.txt) and the built executable 'bot'.
+  - NOT recommended to delete source files; safe to run for a full rebuild when CMake cache got inconsistent.
+- Better recommended flow for clean rebuild:
+  - rm -rf build
+  - cmake -S . -B build
+  - cmake --build build --clean-first
+
+IMPORTANT FILE LOCATIONS TO EDIT (if you want config-driven behavior)
+- config.json -> change "symbol" to target pair (e.g., "BTCFDUSDT")
+- bot.cpp -> currently reads config.json; ensure it does not contain hard-coded defaults (we updated it to read).
+- ladder_strategy.h -> data structures (tracked_orders_, buy_queue_), method declarations (expected_profit_if_sell, place_ladder_orders overload)
+- ladder_strategy.cpp -> insertion points:
+    * expected_profit_if_sell : private method; insert near other private helper methods (after log_order_to_file or before place_ladder_orders)
+    * Before placing SELL orders (inside place_ladder_orders), call expected_profit_if_sell(sell_price, qty) and skip placement if negative.
+
+EXACT PLACES (if you need lines to patch)
+- File: include/ladder_strategy.h
+  - Add private members:
+        std::deque<std::pair<double,double>> buy_queue_; // pair(price, qty) FIFO
+        double profit_accum_;
+  - Add private method prototypes:
+        double expected_profit_if_sell_at(double sell_price, double qty) const;
+        void process_filled_order(const nlohmann::json &order_json);
+- File: src/ladder_strategy.cpp
+  - Implement expected_profit_if_sell_at() as a const helper using buy_queue_ (FIFO).
+  - Before creating a SELL limit order (inside place_ladder_orders), compute:
+        double exp = expected_profit_if_sell_at(sell_price, order_size_);
+        if (exp < 0.0) { log_message("[place_ladder_orders] skipping SELL (neg profit)"); continue; }
+  - When poll_open_orders sees an order with status == "FILLED" (or partially filled), call process_filled_order(order_json) to:
+        - write order line to orders.txt (append)
+        - if SELL or BUY filled: update buy_queue_ (on BUY push), on SELL pop matching quantities from buy_queue_ and compute realised profit for matched qty (accounting commission).
+        - update profit_accum_ and emit a REALISED_PROFIT line to orders_sorted.txt
+
+FINAL NOTE
+- This context file is a snapshot summary; keep it with your project and upload it into the new chat to preserve context. I'll continue from exactly this state if you upload it to the new chat.
+
+=== End of Bot Andr context file ===

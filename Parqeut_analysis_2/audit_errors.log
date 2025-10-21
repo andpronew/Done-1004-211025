@@ -1,0 +1,951 @@
+Depth-file anomaly rules (reported if any match):
+  1) rows_scanned == 0 (file empty/unreadable)
+  2) rows_scanned != meta_rows (metadata mismatch)
+  3) null counts for scalar columns: ts, firstId, lastId, eventTime
+  4) non_monotonic_ts > 0 (timestamps go backwards)
+  5) lastId < firstId in any row
+  6) id overlaps: firstId <= previous.lastId
+  7) id gaps: firstId > previous.lastId + 1
+  8) bid/ask px == 0 or qty == 0 suspicious counts (large fraction)
+  9) inconsistency: bid_px count != bid_qty count (when per-row mapping present)
+ 10) flattened arrays present without offsets => cannot map per-row elements (informational)
+ 11) statistical outliers across dataset (max_gap, average px/qty etc.) — not yet implemented here
+
+[1/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_5.parquet : Unexpected end of stream: Read 0 values, expected 1210
+failed
+[2/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_1.parquet ... ok (rows=269943)
+[3/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_24.parquet : Unexpected end of stream: Read 0 values, expected 579
+failed
+[4/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_27.parquet ... ok (rows=623588)
+[5/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_29.parquet : Unexpected end of stream: Read 0 values, expected 72
+failed
+[6/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_23.parquet ... ok (rows=213815)
+[7/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_23.parquet ... ok (rows=127749)
+[8/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_28.parquet ... ok (rows=130803)
+[9/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_6.parquet ... ok (rows=243496)
+[10/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_12.parquet ... ok (rows=347014)
+[11/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_20.parquet ... ok (rows=268557)
+[12/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_18.parquet : Unexpected end of stream: Read 0 values, expected 505
+failed
+[13/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_31.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_31.parquet : Unexpected end of stream: Read 0 values, expected 720
+failed
+[14/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_21.parquet : Unexpected end of stream: Read 0 values, expected 213
+failed
+[15/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_17.parquet ... ok (rows=133974)
+[16/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_25.parquet ... ok (rows=150774)
+[17/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_28.parquet ... ok (rows=188373)
+[18/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_4.parquet : Unexpected end of stream: Read 0 values, expected 415
+failed
+[19/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_12.parquet ... ok (rows=485787)
+[20/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_31.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_31.parquet : Unexpected end of stream: Read 0 values, expected 432
+failed
+[21/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_1.parquet : Unexpected end of stream: Read 0 values, expected 544
+failed
+[22/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_30.parquet : Unexpected end of stream: Read 0 values, expected 4
+failed
+[23/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_24.parquet ... ok (rows=188314)
+[24/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_2.parquet : Unexpected end of stream: Read 0 values, expected 2509
+failed
+[25/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_11.parquet : Unexpected end of stream: Read 0 values, expected 2090
+failed
+[26/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_28.parquet : Unexpected end of stream: Read 0 values, expected 1424
+failed
+[27/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_26.parquet ... ok (rows=240705)
+[28/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_23.parquet ... ok (rows=541534)
+[29/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_21.parquet ... ok (rows=128724)
+[30/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_6.parquet ... ok (rows=264698)
+[31/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_28.parquet ... ok (rows=277142)
+[32/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_23.parquet : Unexpected end of stream: Read 0 values, expected 1864
+failed
+[33/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_2.parquet : Unexpected end of stream: Read 0 values, expected 389
+failed
+[34/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_5.parquet ... ok (rows=562465)
+[35/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_20.parquet : Unexpected end of stream: Read 0 values, expected 1539
+failed
+[36/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_21.parquet ... ok (rows=239309)
+[37/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_18.parquet : Unexpected end of stream: Read 0 values, expected 548
+failed
+[38/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_1.parquet : Unexpected end of stream: Read 0 values, expected 535
+failed
+[39/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_23.parquet : Unexpected end of stream: Read 0 values, expected 1336
+failed
+[40/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_16.parquet : Unexpected end of stream: Read 0 values, expected 719
+failed
+[41/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_26.parquet : Unexpected end of stream: Read 0 values, expected 75
+failed
+[42/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_9.parquet ... ok (rows=283653)
+[43/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_8.parquet : Unexpected end of stream: Read 0 values, expected 3702
+failed
+[44/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_28.parquet ... ok (rows=152879)
+[45/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_28.parquet : Unexpected end of stream: Read 0 values, expected 1354
+failed
+[46/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_20.parquet : Unexpected end of stream: Read 0 values, expected 505
+failed
+[47/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_9.parquet : Unexpected end of stream: Read 0 values, expected 736
+failed
+[48/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_22.parquet ... ok (rows=583325)
+[49/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_20.parquet : Unexpected end of stream: Read 0 values, expected 584
+failed
+[50/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_9.parquet ... ok (rows=459382)
+[51/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_5.parquet : Unexpected end of stream: Read 0 values, expected 1653
+failed
+[52/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_12.parquet : Unexpected end of stream: Read 0 values, expected 585
+failed
+[53/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_9.parquet ... ok (rows=118252)
+[54/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_31.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_31.parquet : Unexpected end of stream: Read 0 values, expected 240
+failed
+[55/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_8.parquet ... ok (rows=230350)
+[56/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_20.parquet ... ok (rows=127635)
+[57/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_29.parquet : Unexpected end of stream: Read 0 values, expected 170
+failed
+[58/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_11.parquet ... ok (rows=140310)
+[59/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_4.parquet ... ok (rows=214583)
+[60/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_31.parquet ... ok (rows=620766)
+[61/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_22.parquet ... ok (rows=125820)
+[62/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_1.parquet : Unexpected end of stream: Read 0 values, expected 1726
+failed
+[63/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_31.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_31.parquet : Unexpected end of stream: Read 0 values, expected 811
+failed
+[64/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_29.parquet ... ok (rows=160348)
+[65/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_31.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_31.parquet : Unexpected end of stream: Read 0 values, expected 1144
+failed
+[66/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_8.parquet : Unexpected end of stream: Read 0 values, expected 1313
+failed
+[67/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_20.parquet : Unexpected end of stream: Read 0 values, expected 396
+failed
+[68/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_24.parquet : Unexpected end of stream: Read 0 values, expected 79
+failed
+[69/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_20.parquet ... ok (rows=472158)
+[70/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_13.parquet : Unexpected end of stream: Read 0 values, expected 1703
+failed
+[71/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_14.parquet ... ok (rows=3686)
+[72/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_4.parquet ... ok (rows=544554)
+[73/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_29.parquet : Unexpected end of stream: Read 0 values, expected 1071
+failed
+[74/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_15.parquet ... ok (rows=236989)
+[75/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_13.parquet : Unexpected end of stream: Read 0 values, expected 297
+failed
+[76/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_20.parquet : Unexpected end of stream: Read 0 values, expected 3504
+failed
+[77/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_16.parquet : Unexpected end of stream: Read 0 values, expected 2071
+failed
+[78/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_13.parquet : Unexpected end of stream: Read 0 values, expected 1043
+failed
+[79/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_5.parquet ... ok (rows=232509)
+[80/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_13.parquet : Unexpected end of stream: Read 0 values, expected 347
+failed
+[81/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_16.parquet : Unexpected end of stream: Read 0 values, expected 228
+failed
+[82/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_4.parquet : Unexpected end of stream: Read 0 values, expected 53
+failed
+[83/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_14.parquet : Unexpected end of stream: Read 0 values, expected 54
+failed
+[84/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_6.parquet : Unexpected end of stream: Read 0 values, expected 1829
+failed
+[85/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_30.parquet : Unexpected end of stream: Read 0 values, expected 40
+failed
+[86/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_17.parquet : Unexpected end of stream: Read 0 values, expected 1109
+failed
+[87/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_30.parquet : Unexpected end of stream: Read 0 values, expected 75
+failed
+[88/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_30.parquet ... ok (rows=113275)
+[89/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_16.parquet : Unexpected end of stream: Read 0 values, expected 434
+failed
+[90/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_8.parquet ... ok (rows=488997)
+[91/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_18.parquet : Unexpected end of stream: Read 0 values, expected 2477
+failed
+[92/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_24.parquet : Unexpected end of stream: Read 0 values, expected 26
+failed
+[93/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_19.parquet : Unexpected end of stream: Read 0 values, expected 261
+failed
+[94/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_9.parquet : Unexpected end of stream: Read 0 values, expected 1236
+failed
+[95/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_22.parquet ... ok (rows=482906)
+[96/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_15.parquet ... ok (rows=234813)
+[97/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_21.parquet ... ok (rows=589635)
+[98/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_17.parquet ... ok (rows=187996)
+[99/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_3.parquet ... ok (rows=132814)
+[100/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_25.parquet : Unexpected end of stream: Read 0 values, expected 736
+failed
+[101/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_13.parquet ... ok (rows=275375)
+[102/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_30.parquet : Unexpected end of stream: Read 0 values, expected 753
+failed
+[103/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_10.parquet ... ok (rows=331423)
+[104/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_18.parquet : Unexpected end of stream: Read 0 values, expected 457
+failed
+[105/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_15.parquet : Unexpected end of stream: Read 0 values, expected 643
+failed
+[106/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_28.parquet : Unexpected end of stream: Read 0 values, expected 914
+failed
+[107/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_6.parquet : Unexpected end of stream: Read 0 values, expected 1639
+failed
+[108/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_12.parquet : Unexpected end of stream: Read 0 values, expected 73
+failed
+[109/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_11.parquet ... ok (rows=175912)
+[110/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_10.parquet ... ok (rows=391317)
+[111/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_12.parquet ... ok (rows=297723)
+[112/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_15.parquet : Unexpected end of stream: Read 0 values, expected 29
+failed
+[113/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_28.parquet ... ok (rows=267571)
+[114/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_3.parquet ... ok (rows=257884)
+[115/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_22.parquet ... ok (rows=205554)
+[116/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_7.parquet ... ok (rows=503396)
+[117/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_7.parquet : Unexpected end of stream: Read 0 values, expected 1917
+failed
+[118/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_18.parquet : Unexpected end of stream: Read 0 values, expected 266
+failed
+[119/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_6.parquet ... ok (rows=654347)
+[120/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_2.parquet : Unexpected end of stream: Read 0 values, expected 59
+failed
+[121/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_14.parquet ... ok (rows=211631)
+[122/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_25.parquet : Unexpected end of stream: Read 0 values, expected 177
+failed
+[123/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_24.parquet : Unexpected end of stream: Read 0 values, expected 1294
+failed
+[124/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_21.parquet : Unexpected end of stream: Read 0 values, expected 3750
+failed
+[125/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_17.parquet ... ok (rows=134462)
+[126/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_15.parquet : Unexpected end of stream: Read 0 values, expected 164
+failed
+[127/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_26.parquet : Unexpected end of stream: Read 0 values, expected 1242
+failed
+[128/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_11.parquet ... ok (rows=178163)
+[129/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_15.parquet : Unexpected end of stream: Read 0 values, expected 2159
+failed
+[130/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_7.parquet : Unexpected end of stream: Read 0 values, expected 148
+failed
+[131/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_25.parquet ... ok (rows=189125)
+[132/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_16.parquet ... ok (rows=289022)
+[133/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_28.parquet ... ok (rows=183515)
+[134/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_9.parquet : Unexpected end of stream: Read 0 values, expected 1475
+failed
+[135/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_6.parquet ... ok (rows=171556)
+[136/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_6.parquet : Unexpected end of stream: Read 0 values, expected 1307
+failed
+[137/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_22.parquet ... ok (rows=167376)
+[138/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_4.parquet : Unexpected end of stream: Read 0 values, expected 167
+failed
+[139/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_8.parquet : Unexpected end of stream: Read 0 values, expected 303
+failed
+[140/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_27.parquet ... ok (rows=327482)
+[141/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_29.parquet ... ok (rows=129539)
+[142/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_16.parquet ... ok (rows=148358)
+[143/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_23.parquet : Unexpected end of stream: Read 0 values, expected 163
+failed
+[144/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_12.parquet ... ok (rows=159380)
+[145/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_6.parquet : Unexpected end of stream: Read 0 values, expected 13
+failed
+[146/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_13.parquet ... ok (rows=147747)
+[147/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_12.parquet ... ok (rows=290245)
+[148/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_6.parquet : Unexpected end of stream: Read 0 values, expected 281
+failed
+[149/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_4.parquet ... ok (rows=226427)
+[150/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_30.parquet ... ok (rows=154136)
+[151/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_24.parquet ... ok (rows=149972)
+[152/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_7.parquet ... ok (rows=333437)
+[153/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_26.parquet ... ok (rows=368578)
+[154/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_5.parquet ... ok (rows=313176)
+[155/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_4.parquet ... ok (rows=119058)
+[156/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_16.parquet ... ok (rows=285232)
+[157/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_8.parquet : Unexpected end of stream: Read 0 values, expected 161
+failed
+[158/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_18.parquet ... ok (rows=318093)
+[159/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_23.parquet ... ok (rows=263387)
+[160/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_12.parquet ... ok (rows=287700)
+[161/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_10.parquet : Unexpected end of stream: Read 0 values, expected 92
+failed
+[162/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_11.parquet : Unexpected end of stream: Read 0 values, expected 2527
+failed
+[163/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_16.parquet ... ok (rows=196112)
+[164/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_23.parquet : Unexpected end of stream: Read 0 values, expected 18
+failed
+[165/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_1.parquet : Unexpected end of stream: Read 0 values, expected 579
+failed
+[166/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_21.parquet ... ok (rows=24848)
+[167/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_11.parquet : Unexpected end of stream: Read 0 values, expected 187
+failed
+[168/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_20.parquet ... ok (rows=180926)
+[169/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_15.parquet ... ok (rows=227424)
+[170/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_10.parquet ... ok (rows=364043)
+[171/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_10.parquet : Unexpected end of stream: Read 0 values, expected 114
+failed
+[172/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_13.parquet ... ok (rows=289097)
+[173/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_27.parquet ... ok (rows=135549)
+[174/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_23.parquet : Unexpected end of stream: Read 0 values, expected 230
+failed
+[175/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_23.parquet ... ok (rows=158013)
+[176/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_14.parquet : Unexpected end of stream: Read 0 values, expected 2578
+failed
+[177/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_23.parquet : Unexpected end of stream: Read 0 values, expected 670
+failed
+[178/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_12.parquet : Unexpected end of stream: Read 0 values, expected 1931
+failed
+[179/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_15.parquet ... ok (rows=352142)
+[180/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_13.parquet : Unexpected end of stream: Read 0 values, expected 552
+failed
+[181/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_11.parquet ... ok (rows=240848)
+[182/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_12.parquet : Unexpected end of stream: Read 0 values, expected 227
+failed
+[183/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_8.parquet : Unexpected end of stream: Read 0 values, expected 657
+failed
+[184/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_3.parquet : Unexpected end of stream: Read 0 values, expected 3457
+failed
+[185/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_2.parquet : Unexpected end of stream: Read 0 values, expected 129
+failed
+[186/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_20.parquet : Unexpected end of stream: Read 0 values, expected 2616
+failed
+[187/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_18.parquet ... ok (rows=588903)
+[188/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_5.parquet : Unexpected end of stream: Read 0 values, expected 2931
+failed
+[189/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_16.parquet : Unexpected end of stream: Read 0 values, expected 938
+failed
+[190/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_31.parquet ... ok (rows=113630)
+[191/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_11.parquet : Unexpected end of stream: Read 0 values, expected 1057
+failed
+[192/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_19.parquet : Unexpected end of stream: Read 0 values, expected 4
+failed
+[193/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_2.parquet : Unexpected end of stream: Read 0 values, expected 1412
+failed
+[194/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_12.parquet : Unexpected end of stream: Read 0 values, expected 1124
+failed
+[195/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_26.parquet : Unexpected end of stream: Read 0 values, expected 1517
+failed
+[196/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_26.parquet ... ok (rows=168236)
+[197/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_2.parquet ... ok (rows=253422)
+[198/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_21.parquet : Unexpected end of stream: Read 0 values, expected 12
+failed
+[199/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_6.parquet ... ok (rows=457651)
+[200/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_14.parquet : Unexpected end of stream: Read 0 values, expected 874
+failed
+[201/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_26.parquet ... ok (rows=136854)
+[202/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_19.parquet : Unexpected end of stream: Read 0 values, expected 470
+failed
+[203/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_5.parquet : Unexpected end of stream: Read 0 values, expected 111
+failed
+[204/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_3.parquet ... ok (rows=194373)
+[205/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_9.parquet : Unexpected end of stream: Read 0 values, expected 1184
+failed
+[206/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_1.parquet : Unexpected end of stream: Read 0 values, expected 25
+failed
+[207/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_10.parquet ... ok (rows=207182)
+[208/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_19.parquet ... ok (rows=275072)
+[209/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_16.parquet : Unexpected end of stream: Read 0 values, expected 505
+failed
+[210/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_26.parquet : Unexpected end of stream: Read 0 values, expected 572
+failed
+[211/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_30.parquet : Unexpected end of stream: Read 0 values, expected 101
+failed
+[212/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_24.parquet : Unexpected end of stream: Read 0 values, expected 308
+failed
+[213/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_24.parquet ... ok (rows=477302)
+[214/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_2.parquet : Unexpected end of stream: Read 0 values, expected 3260
+failed
+[215/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_5.parquet : Unexpected end of stream: Read 0 values, expected 214
+failed
+[216/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_20.parquet ... ok (rows=274494)
+[217/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_4.parquet ... ok (rows=137681)
+[218/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_12.parquet ... ok (rows=245750)
+[219/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_25.parquet ... ok (rows=405758)
+[220/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_10.parquet : Unexpected end of stream: Read 0 values, expected 665
+failed
+[221/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_4.parquet : Unexpected end of stream: Read 0 values, expected 620
+failed
+[222/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_19.parquet : Unexpected end of stream: Read 0 values, expected 375
+failed
+[223/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_3.parquet ... ok (rows=449786)
+[224/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_28.parquet : Unexpected end of stream: Read 0 values, expected 9
+failed
+[225/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_25.parquet ... ok (rows=183246)
+[226/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_15.parquet ... ok (rows=487448)
+[227/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_3.parquet : Unexpected end of stream: Read 0 values, expected 829
+failed
+[228/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_11.parquet : Unexpected end of stream: Read 0 values, expected 70
+failed
+[229/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_2.parquet ... ok (rows=148337)
+[230/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_19.parquet ... ok (rows=609329)
+[231/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_23.parquet ... ok (rows=489643)
+[232/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_10.parquet : Unexpected end of stream: Read 0 values, expected 269
+failed
+[233/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_7.parquet : Unexpected end of stream: Read 0 values, expected 431
+failed
+[234/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_28.parquet ... ok (rows=149698)
+[235/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_9.parquet ... ok (rows=275166)
+[236/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_31.parquet ... ok (rows=174651)
+[237/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_1.parquet : Unexpected end of stream: Read 0 values, expected 3089
+failed
+[238/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_29.parquet : Unexpected end of stream: Read 0 values, expected 1336
+failed
+[239/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_17.parquet : Unexpected end of stream: Read 0 values, expected 137
+failed
+[240/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_29.parquet : Unexpected end of stream: Read 0 values, expected 926
+failed
+[241/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_2.parquet ... ok (rows=233139)
+[242/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_7.parquet : Unexpected end of stream: Read 0 values, expected 1330
+failed
+[243/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_22.parquet : Unexpected end of stream: Read 0 values, expected 1127
+failed
+[244/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_27.parquet ... ok (rows=222414)
+[245/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_13.parquet ... ok (rows=485773)
+[246/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_27.parquet : Unexpected end of stream: Read 0 values, expected 2040
+failed
+[247/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_8.parquet ... ok (rows=103647)
+[248/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_3.parquet ... ok (rows=797966)
+[249/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_21.parquet ... ok (rows=231358)
+[250/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_7.parquet : Unexpected end of stream: Read 0 values, expected 2694
+failed
+[251/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_30.parquet : Unexpected end of stream: Read 0 values, expected 620
+failed
+[252/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_13.parquet ... ok (rows=161541)
+[253/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_1.parquet ... ok (rows=496731)
+[254/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_23.parquet : Unexpected end of stream: Read 0 values, expected 613
+failed
+[255/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_18.parquet : Unexpected end of stream: Read 0 values, expected 1675
+failed
+[256/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_5.parquet ... ok (rows=271493)
+[257/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_17.parquet : Unexpected end of stream: Read 0 values, expected 185
+failed
+[258/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_25.parquet ... ok (rows=493118)
+[259/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_28.parquet : Unexpected end of stream: Read 0 values, expected 2160
+failed
+[260/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_23.parquet : Unexpected end of stream: Read 0 values, expected 2314
+failed
+[261/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_14.parquet ... ok (rows=429322)
+[262/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_30.parquet ... ok (rows=128293)
+[263/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_22.parquet ... ok (rows=497874)
+[264/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_26.parquet : Unexpected end of stream: Read 0 values, expected 237
+failed
+[265/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_25.parquet : Unexpected end of stream: Read 0 values, expected 1448
+failed
+[266/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_14.parquet ... ok (rows=231443)
+[267/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_28.parquet : Unexpected end of stream: Read 0 values, expected 879
+failed
+[268/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_11.parquet : Unexpected end of stream: Read 0 values, expected 842
+failed
+[269/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_9.parquet : Unexpected end of stream: Read 0 values, expected 286
+failed
+[270/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_29.parquet ... ok (rows=230980)
+[271/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_7.parquet : Unexpected end of stream: Read 0 values, expected 307
+failed
+[272/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_24.parquet ... ok (rows=237454)
+[273/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_4.parquet ... ok (rows=260052)
+[274/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_22.parquet ... ok (rows=242793)
+[275/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_14.parquet : Unexpected end of stream: Read 0 values, expected 1062
+failed
+[276/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_5.parquet ... ok (rows=157341)
+[277/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_1.parquet ... ok (rows=419851)
+[278/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_23.parquet : Unexpected end of stream: Read 0 values, expected 270
+failed
+[279/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_4.parquet : Unexpected end of stream: Read 0 values, expected 1399
+failed
+[280/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_10.parquet : Unexpected end of stream: Read 0 values, expected 356
+failed
+[281/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_27.parquet : Unexpected end of stream: Read 0 values, expected 261
+failed
+[282/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_18.parquet : Unexpected end of stream: Read 0 values, expected 520
+failed
+[283/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_6.parquet : Unexpected end of stream: Read 0 values, expected 2187
+failed
+[284/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_24.parquet ... ok (rows=158102)
+[285/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_14.parquet ... ok (rows=489612)
+[286/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_22.parquet ... ok (rows=262327)
+[287/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_26.parquet ... ok (rows=242034)
+[288/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_26.parquet ... ok (rows=389554)
+[289/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_18.parquet : Unexpected end of stream: Read 0 values, expected 407
+failed
+[290/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_4.parquet : Unexpected end of stream: Read 0 values, expected 393
+failed
+[291/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_1.parquet ... ok (rows=599790)
+[292/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_25.parquet : Unexpected end of stream: Read 0 values, expected 920
+failed
+[293/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_17.parquet : Unexpected end of stream: Read 0 values, expected 1069
+failed
+[294/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_19.parquet : Unexpected end of stream: Read 0 values, expected 160
+failed
+[295/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_18.parquet : Unexpected end of stream: Read 0 values, expected 520
+failed
+[296/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_7.parquet ... ok (rows=184576)
+[297/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_26.parquet ... ok (rows=99251)
+[298/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_23.parquet ... ok (rows=128059)
+[299/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_10.parquet : Unexpected end of stream: Read 0 values, expected 723
+failed
+[300/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_26.parquet ... ok (rows=118608)
+[301/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_27.parquet ... ok (rows=127548)
+[302/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_17.parquet : Unexpected end of stream: Read 0 values, expected 850
+failed
+[303/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_4.parquet ... ok (rows=149827)
+[304/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_26.parquet ... ok (rows=187441)
+[305/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_25.parquet : Unexpected end of stream: Read 0 values, expected 2251
+failed
+[306/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_22.parquet : Unexpected end of stream: Read 0 values, expected 1345
+failed
+[307/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_11.parquet : Unexpected end of stream: Read 0 values, expected 494
+failed
+[308/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_25.parquet : Unexpected end of stream: Read 0 values, expected 1585
+failed
+[309/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_25.parquet ... ok (rows=158970)
+[310/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_29.parquet : Unexpected end of stream: Read 0 values, expected 1219
+failed
+[311/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_12.parquet : Unexpected end of stream: Read 0 values, expected 778
+failed
+[312/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_29.parquet : Unexpected end of stream: Read 0 values, expected 1512
+failed
+[313/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_19.parquet : Unexpected end of stream: Read 0 values, expected 334
+failed
+[314/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_7.parquet ... ok (rows=80443)
+[315/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_24.parquet ... ok (rows=176260)
+[316/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_16.parquet ... ok (rows=194046)
+[317/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_22.parquet : Unexpected end of stream: Read 0 values, expected 430
+failed
+[318/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_10.parquet : Unexpected end of stream: Read 0 values, expected 838
+failed
+[319/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_22.parquet : Unexpected end of stream: Read 0 values, expected 506
+failed
+[320/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_22.parquet : Unexpected end of stream: Read 0 values, expected 583
+failed
+[321/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_20.parquet : Unexpected end of stream: Read 0 values, expected 666
+failed
+[322/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_23.parquet : Unexpected end of stream: Read 0 values, expected 579
+failed
+[323/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_3.parquet : Unexpected end of stream: Read 0 values, expected 124
+failed
+[324/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_9.parquet : Unexpected end of stream: Read 0 values, expected 128
+failed
+[325/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_1.parquet : Unexpected end of stream: Read 0 values, expected 1008
+failed
+[326/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_29.parquet : Unexpected end of stream: Read 0 values, expected 1885
+failed
+[327/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_3.parquet ... ok (rows=144802)
+[328/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_20.parquet ... ok (rows=145802)
+[329/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_30.parquet : Unexpected end of stream: Read 0 values, expected 114
+failed
+[330/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_9.parquet ... ok (rows=135985)
+[331/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_24.parquet ... ok (rows=189770)
+[332/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_13.parquet ... ok (rows=119445)
+[333/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_16.parquet ... ok (rows=284676)
+[334/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_26.parquet : Unexpected end of stream: Read 0 values, expected 1632
+failed
+[335/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_20.parquet : Unexpected end of stream: Read 0 values, expected 810
+failed
+[336/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_12.parquet : Unexpected end of stream: Read 0 values, expected 690
+failed
+[337/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_30.parquet : Unexpected end of stream: Read 0 values, expected 117
+failed
+[338/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_8.parquet : Unexpected end of stream: Read 0 values, expected 604
+failed
+[339/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_6.parquet : Unexpected end of stream: Read 0 values, expected 2057
+failed
+[340/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_27.parquet : Unexpected end of stream: Read 0 values, expected 1162
+failed
+[341/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_30.parquet : Unexpected end of stream: Read 0 values, expected 1933
+failed
+[342/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_13.parquet : Unexpected end of stream: Read 0 values, expected 1411
+failed
+[343/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_5.parquet : Unexpected end of stream: Read 0 values, expected 2078
+failed
+[344/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_25.parquet ... ok (rows=237748)
+[345/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_26.parquet : Unexpected end of stream: Read 0 values, expected 3044
+failed
+[346/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_29.parquet : Unexpected end of stream: Read 0 values, expected 1385
+failed
+[347/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_29.parquet ... ok (rows=134741)
+[348/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_7.parquet ... ok (rows=117346)
+[349/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_6.parquet ... ok (rows=75797)
+[350/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_2.parquet : Unexpected end of stream: Read 0 values, expected 1848
+failed
+[351/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_6.parquet : Unexpected end of stream: Read 0 values, expected 70
+failed
+[352/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_15.parquet ... ok (rows=361583)
+[353/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_21.parquet : Unexpected end of stream: Read 0 values, expected 2688
+failed
+[354/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_7.parquet ... ok (rows=293999)
+[355/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_18.parquet ... ok (rows=388358)
+[356/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_14.parquet : Unexpected end of stream: Read 0 values, expected 386
+failed
+[357/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_23.parquet ... ok (rows=236247)
+[358/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_25.parquet : Unexpected end of stream: Read 0 values, expected 39
+failed
+[359/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_25.parquet ... ok (rows=260087)
+[360/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_3.parquet : Unexpected end of stream: Read 0 values, expected 261
+failed
+[361/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_30.parquet ... ok (rows=456419)
+[362/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_1.parquet ... ok (rows=164272)
+[363/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_7.parquet : Unexpected end of stream: Read 0 values, expected 1315
+failed
+[364/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_30.parquet ... ok (rows=230598)
+[365/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_4.parquet ... ok (rows=449433)
+[366/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_8.parquet ... ok (rows=539136)
+[367/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_9.parquet : Unexpected end of stream: Read 0 values, expected 775
+failed
+[368/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_5.parquet : Unexpected end of stream: Read 0 values, expected 660
+failed
+[369/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_15.parquet : Unexpected end of stream: Read 0 values, expected 184
+failed
+[370/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_15.parquet ... ok (rows=168963)
+[371/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_8.parquet : Unexpected end of stream: Read 0 values, expected 128
+failed
+[372/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_15.parquet ... ok (rows=130759)
+[373/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_21.parquet : Unexpected end of stream: Read 0 values, expected 807
+failed
+[374/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_8.parquet ... ok (rows=147036)
+[375/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_4.parquet : Unexpected end of stream: Read 0 values, expected 862
+failed
+[376/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_8.parquet : Unexpected end of stream: Read 0 values, expected 626
+failed
+[377/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_5.parquet : Unexpected end of stream: Read 0 values, expected 1717
+failed
+[378/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_7.parquet ... ok (rows=168878)
+[379/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_20.parquet : Unexpected end of stream: Read 0 values, expected 1822
+failed
+[380/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_12.parquet : Unexpected end of stream: Read 0 values, expected 3449
+failed
+[381/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_21.parquet : Unexpected end of stream: Read 0 values, expected 337
+failed
+[382/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_7.parquet : Unexpected end of stream: Read 0 values, expected 134
+failed
+[383/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_19.parquet ... ok (rows=130259)
+[384/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_18.parquet ... ok (rows=220469)
+[385/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_2.parquet : Unexpected end of stream: Read 0 values, expected 1421
+failed
+[386/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_22.parquet ... ok (rows=165005)
+[387/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_25.parquet ... ok (rows=207306)
+[388/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_7.parquet ... ok (rows=136076)
+[389/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_3.parquet : Unexpected end of stream: Read 0 values, expected 668
+failed
+[390/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_5.parquet : Unexpected end of stream: Read 0 values, expected 2942
+failed
+[391/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_20.parquet ... ok (rows=620561)
+[392/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_23.parquet : Unexpected end of stream: Read 0 values, expected 280
+failed
+[393/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_1.parquet : Unexpected end of stream: Read 0 values, expected 587
+failed
+[394/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_24.parquet ... ok (rows=216903)
+[395/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_21.parquet ... ok (rows=252829)
+[396/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_19.parquet : Unexpected end of stream: Read 0 values, expected 5519
+failed
+[397/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_29.parquet : Unexpected end of stream: Read 0 values, expected 27
+failed
+[398/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_17.parquet : Unexpected end of stream: Read 0 values, expected 2254
+failed
+[399/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_17.parquet ... ok (rows=179461)
+[400/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_8.parquet : Unexpected end of stream: Read 0 values, expected 113
+failed
+[401/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_20.parquet : Unexpected end of stream: Read 0 values, expected 1895
+failed
+[402/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_12.parquet : Unexpected end of stream: Read 0 values, expected 823
+failed
+[403/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_4.parquet : Unexpected end of stream: Read 0 values, expected 2145
+failed
+[404/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_13.parquet ... ok (rows=299697)
+[405/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_3.parquet : Unexpected end of stream: Read 0 values, expected 515
+failed
+[406/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_2.parquet : Unexpected end of stream: Read 0 values, expected 235
+failed
+[407/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_18.parquet ... ok (rows=238075)
+[408/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_26.parquet : Unexpected end of stream: Read 0 values, expected 199
+failed
+[409/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_29.parquet ... ok (rows=255715)
+[410/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_22.parquet : Unexpected end of stream: Read 0 values, expected 68
+failed
+[411/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_25.parquet : Unexpected end of stream: Read 0 values, expected 326
+failed
+[412/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_14.parquet ... ok (rows=206997)
+[413/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_15.parquet ... ok (rows=429828)
+[414/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_15.parquet : Unexpected end of stream: Read 0 values, expected 282
+failed
+[415/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_21.parquet ... ok (rows=344971)
+[416/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_10.parquet : Unexpected end of stream: Read 0 values, expected 617
+failed
+[417/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_17.parquet ... ok (rows=507299)
+[418/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_2.parquet : Unexpected end of stream: Read 0 values, expected 1497
+failed
+[419/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_25.parquet ... ok (rows=349331)
+[420/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_1.parquet ... ok (rows=121502)
+[421/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_15.parquet ... ok (rows=207966)
+[422/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_18.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_18.parquet : Unexpected end of stream: Read 0 values, expected 1084
+failed
+[423/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_1.parquet ... ok (rows=17499)
+[424/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_14.parquet ... ok (rows=194409)
+[425/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_11.parquet : Unexpected end of stream: Read 0 values, expected 109
+failed
+[426/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_12.parquet ... ok (rows=359631)
+[427/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_9.parquet : Unexpected end of stream: Read 0 values, expected 821
+failed
+[428/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_28.parquet : Unexpected end of stream: Read 0 values, expected 37
+failed
+[429/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_11.parquet : Unexpected end of stream: Read 0 values, expected 190
+failed
+[430/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_14.parquet ... ok (rows=326016)
+[431/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_4.parquet : Unexpected end of stream: Read 0 values, expected 1014
+failed
+[432/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_19.parquet : Unexpected end of stream: Read 0 values, expected 9
+failed
+[433/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_14.parquet ... ok (rows=265082)
+[434/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_17.parquet ... ok (rows=248961)
+[435/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_21.parquet ... ok (rows=150110)
+[436/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_6.parquet : Unexpected end of stream: Read 0 values, expected 793
+failed
+[437/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_24.parquet : Unexpected end of stream: Read 0 values, expected 61
+failed
+[438/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_10.parquet : Unexpected end of stream: Read 0 values, expected 614
+failed
+[439/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_19.parquet : Unexpected end of stream: Read 0 values, expected 1418
+failed
+[440/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_12.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_12.parquet : Unexpected end of stream: Read 0 values, expected 428
+failed
+[441/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_28.parquet ... ok (rows=618362)
+[442/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_21.parquet ... ok (rows=588175)
+[443/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_24.parquet ... ok (rows=483193)
+[444/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_3.parquet : Unexpected end of stream: Read 0 values, expected 749
+failed
+[445/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_19.parquet ... ok (rows=184596)
+[446/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_7.parquet : Unexpected end of stream: Read 0 values, expected 1501
+failed
+[447/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_21.parquet : Unexpected end of stream: Read 0 values, expected 102
+failed
+[448/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_16.parquet ... ok (rows=154263)
+[449/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_8.parquet : Unexpected end of stream: Read 0 values, expected 355
+failed
+[450/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_27.parquet : Unexpected end of stream: Read 0 values, expected 1325
+failed
+[451/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_17.parquet ... ok (rows=459147)
+[452/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_19.parquet : Unexpected end of stream: Read 0 values, expected 1877
+failed
+[453/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_27.parquet : Unexpected end of stream: Read 0 values, expected 2010
+failed
+[454/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_11.parquet ... ok (rows=441853)
+[455/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_14.parquet ... ok (rows=252172)
+[456/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_5.parquet ... ok (rows=109376)
+[457/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_9.parquet : Unexpected end of stream: Read 0 values, expected 222
+failed
+[458/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_3.parquet : Unexpected end of stream: Read 0 values, expected 289
+failed
+[459/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_17.parquet ... ok (rows=252568)
+[460/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_9.parquet : Unexpected end of stream: Read 0 values, expected 2095
+failed
+[461/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_11.parquet ... ok (rows=218454)
+[462/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_19.parquet ... ok (rows=248080)
+[463/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_5.parquet : Unexpected end of stream: Read 0 values, expected 813
+failed
+[464/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_21.parquet : Unexpected end of stream: Read 0 values, expected 934
+failed
+[465/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_3.parquet : Unexpected end of stream: Read 0 values, expected 2593
+failed
+[466/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_17.parquet : Unexpected end of stream: Read 0 values, expected 988
+failed
+[467/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_17.parquet : Unexpected end of stream: Read 0 values, expected 833
+failed
+[468/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_12.parquet ... ok (rows=117243)
+[469/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_30.parquet ... ok (rows=662229)
+[470/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_31.parquet ... ok (rows=506807)
+[471/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_17.parquet : Unexpected end of stream: Read 0 values, expected 986
+failed
+[472/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_13.parquet : Unexpected end of stream: Read 0 values, expected 425
+failed
+[473/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_9.parquet ... ok (rows=432111)
+[474/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_8.parquet ... ok (rows=104011)
+[475/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_19.parquet : Unexpected end of stream: Read 0 values, expected 345
+failed
+[476/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_11.parquet : Unexpected end of stream: Read 0 values, expected 1692
+failed
+[477/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_1.parquet : Unexpected end of stream: Read 0 values, expected 2278
+failed
+[478/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_13.parquet : Unexpected end of stream: Read 0 values, expected 859
+failed
+[479/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_29.parquet ... ok (rows=174482)
+[480/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_21.parquet ... ok (rows=745898)
+[481/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_24.parquet : Unexpected end of stream: Read 0 values, expected 99
+failed
+[482/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_31.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_31.parquet : Unexpected end of stream: Read 0 values, expected 551
+failed
+[483/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_10.parquet : Unexpected end of stream: Read 0 values, expected 105
+failed
+[484/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_27.parquet : Unexpected end of stream: Read 0 values, expected 245
+failed
+[485/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_1.parquet : Unexpected end of stream: Read 0 values, expected 49
+failed
+[486/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_18.parquet ... ok (rows=65263)
+[487/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_21.parquet : Unexpected end of stream: Read 0 values, expected 333
+failed
+[488/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_10.parquet : Unexpected end of stream: Read 0 values, expected 1780
+failed
+[489/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_19.parquet ... ok (rows=292869)
+[490/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_13.parquet ... ok (rows=226473)
+[491/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_13.parquet ... ok (rows=466398)
+[492/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_2.parquet : Unexpected end of stream: Read 0 values, expected 2024
+failed
+[493/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_24.parquet ... ok (rows=551720)
+[494/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_10.parquet : Unexpected end of stream: Read 0 values, expected 2645
+failed
+[495/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_18.parquet ... ok (rows=309514)
+[496/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_1.parquet ... ok (rows=349848)
+[497/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_30.parquet : Unexpected end of stream: Read 0 values, expected 5
+failed
+[498/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_24.parquet : Unexpected end of stream: Read 0 values, expected 403
+failed
+[499/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_26.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_26.parquet : Unexpected end of stream: Read 0 values, expected 1635
+failed
+[500/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_22.parquet : Unexpected end of stream: Read 0 values, expected 1869
+failed
+[501/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_2.parquet ... ok (rows=648272)
+[502/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_10.parquet ... ok (rows=424826)
+[503/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_8.parquet : Unexpected end of stream: Read 0 values, expected 666
+failed
+[504/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_2.parquet ... ok (rows=409237)
+[505/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_16.parquet : Unexpected end of stream: Read 0 values, expected 306
+failed
+[506/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_10.parquet : Unexpected end of stream: Read 0 values, expected 1156
+failed
+[507/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_2.parquet ... ok (rows=164947)
+[508/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_17.parquet ... ok (rows=205548)
+[509/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_22.parquet : Unexpected end of stream: Read 0 values, expected 1871
+failed
+[510/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_26.parquet ... ok (rows=589662)
+[511/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_14.parquet ... ok (rows=127422)
+[512/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_16.parquet : Unexpected end of stream: Read 0 values, expected 2
+failed
+[513/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_20.parquet : Unexpected end of stream: Read 0 values, expected 2396
+failed
+[514/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_14.parquet : Unexpected end of stream: Read 0 values, expected 535
+failed
+[515/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_25.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_25.parquet : Unexpected end of stream: Read 0 values, expected 705
+failed
+[516/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_16.parquet ... ok (rows=163503)
+[517/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_14.parquet : Unexpected end of stream: Read 0 values, expected 2083
+failed
+[518/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_2.parquet ... ok (rows=546039)
+[519/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_7.parquet ... ok (rows=211878)
+[520/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_13.parquet ... ok (rows=192323)
+[521/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_31.parquet ... ok (rows=393391)
+[522/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_6_27.parquet : Unexpected end of stream: Read 0 values, expected 61
+failed
+[523/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_27.parquet ... ok (rows=315299)
+[524/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_29.parquet ... ok (rows=521939)
+[525/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_3.parquet : Unexpected end of stream: Read 0 values, expected 348
+failed
+[526/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_22.parquet ... ok (rows=190854)
+[527/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_6.parquet : Unexpected end of stream: Read 0 values, expected 2671
+failed
+[528/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_22.parquet ... ok (rows=256473)
+[529/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_13.parquet : Unexpected end of stream: Read 0 values, expected 105
+failed
+[530/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_19.parquet : Unexpected end of stream: Read 0 values, expected 2122
+failed
+[531/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_11.parquet ... ok (rows=337367)
+[532/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_16.parquet : Unexpected end of stream: Read 0 values, expected 3
+failed
+[533/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_18.parquet ... ok (rows=125160)
+[534/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_8.parquet ... ok (rows=238205)
+[535/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_8.parquet : Unexpected end of stream: Read 0 values, expected 2082
+failed
+[536/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_23.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_23.parquet : Unexpected end of stream: Read 0 values, expected 2444
+failed
+[537/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_12.parquet ... ok (rows=254885)
+[538/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_9.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_9.parquet : Unexpected end of stream: Read 0 values, expected 1783
+failed
+[539/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_14.parquet : Unexpected end of stream: Read 0 values, expected 1588
+failed
+[540/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_2.parquet : Unexpected end of stream: Read 0 values, expected 165
+failed
+[541/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_12.parquet ... ok (rows=359080)
+[542/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_3.parquet : Unexpected end of stream: Read 0 values, expected 606
+failed
+[543/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_14.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_14.parquet : Unexpected end of stream: Read 0 values, expected 2193
+failed
+[544/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_13.parquet : Unexpected end of stream: Read 0 values, expected 264
+failed
+[545/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_6.parquet : Unexpected end of stream: Read 0 values, expected 553
+failed
+[546/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_20.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_20.parquet : Unexpected end of stream: Read 0 values, expected 1640
+failed
+[547/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_28.parquet ... ok (rows=423341)
+[548/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_22.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_22.parquet : Unexpected end of stream: Read 0 values, expected 1748
+failed
+[549/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_11.parquet : Unexpected end of stream: Read 0 values, expected 331
+failed
+[550/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_11.parquet : Unexpected end of stream: Read 0 values, expected 184
+failed
+[551/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_27.parquet : Unexpected end of stream: Read 0 values, expected 398
+failed
+[552/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_6_30.parquet : Unexpected end of stream: Read 0 values, expected 104
+failed
+[553/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_27.parquet : Unexpected end of stream: Read 0 values, expected 238
+failed
+[554/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_10.parquet ... ok (rows=218740)
+[555/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_11.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_11.parquet : Unexpected end of stream: Read 0 values, expected 541
+failed
+[556/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_19.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_19.parquet : Unexpected end of stream: Read 0 values, expected 1742
+failed
+[557/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_9.parquet ... ok (rows=212927)
+[558/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_29.parquet : Unexpected end of stream: Read 0 values, expected 347
+failed
+[559/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_8.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_8.parquet : Unexpected end of stream: Read 0 values, expected 477
+failed
+[560/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_7.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_7.parquet : Unexpected end of stream: Read 0 values, expected 30
+failed
+[561/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_26.parquet ... ok (rows=278062)
+[562/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_16.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_16.parquet : Unexpected end of stream: Read 0 values, expected 207
+failed
+[563/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_28.parquet : Unexpected end of stream: Read 0 values, expected 607
+failed
+[564/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_4.parquet ... ok (rows=675322)
+[565/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_2.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_2.parquet : Unexpected end of stream: Read 0 values, expected 103
+failed
+[566/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_14.parquet ... ok (rows=342302)
+[567/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_15.parquet ... ok (rows=176578)
+[568/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_24.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_1_24.parquet : Unexpected end of stream: Read 0 values, expected 109
+failed
+[569/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_21.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_21.parquet : Unexpected end of stream: Read 0 values, expected 2703
+failed
+[570/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_2_5.parquet : Unexpected end of stream: Read 0 values, expected 2642
+failed
+[571/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_28.parquet : Unexpected end of stream: Read 0 values, expected 606
+failed
+[572/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_1.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_1.parquet : Unexpected end of stream: Read 0 values, expected 238
+failed
+[573/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_27.parquet ... ok (rows=86358)
+[574/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_13.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_5_13.parquet : Unexpected end of stream: Read 0 values, expected 250
+failed
+[575/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_10.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_3_10.parquet : Unexpected end of stream: Read 0 values, expected 729
+failed
+[576/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_16.parquet ... ok (rows=452415)
+[577/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_28.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_28.parquet : Unexpected end of stream: Read 0 values, expected 1200
+failed
+[578/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_5.parquet ... ok (rows=248723)
+[579/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_9_27.parquet : Unexpected end of stream: Read 0 values, expected 823
+failed
+[580/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_7.parquet ... ok (rows=436235)
+[581/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_6.parquet ... ok (rows=387001)
+[582/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_1_5.parquet ... ok (rows=444092)
+[583/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_6.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_6.parquet : Unexpected end of stream: Read 0 values, expected 4367
+failed
+[584/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_12_1.parquet ... ok (rows=179975)
+[585/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_17.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_10_17.parquet : Unexpected end of stream: Read 0 values, expected 1570
+failed
+[586/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_31.parquet ... ok (rows=259640)
+[587/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_29.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_29.parquet : Unexpected end of stream: Read 0 values, expected 45
+failed
+[588/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_8_27.parquet ... ok (rows=146277)
+[589/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_11_4.parquet : Unexpected end of stream: Read 0 values, expected 165
+failed
+[590/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_30.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_30.parquet : Unexpected end of stream: Read 0 values, expected 567
+failed
+[591/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_3.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_3.parquet : Unexpected end of stream: Read 0 values, expected 437
+failed
+[592/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_3_9.parquet ... ok (rows=452199)
+[593/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_2_27.parquet ... ok (rows=398299)
+[594/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_28.parquet ... ok (rows=149911)
+[595/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_3.parquet ... ok (rows=121307)
+[596/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_18.parquet ... ok (rows=209658)
+[597/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_9_11.parquet ... ok (rows=41725)
+[598/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_6.parquet ... ok (rows=222933)
+[599/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_4_3.parquet ... ok (rows=263119)
+[600/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_4.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_4.parquet : Unexpected end of stream: Read 0 values, expected 154
+failed
+[601/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_27.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_27.parquet : Unexpected end of stream: Read 0 values, expected 1461
+failed
+[602/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_5.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_7_5.parquet : Unexpected end of stream: Read 0 values, expected 756
+failed
+[603/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2025_7_15.parquet ... ok (rows=191569)
+[604/604] /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_15.parquet ... ERROR: open/read failed for /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_5_15.parquet : Unexpected end of stream: Read 0 values, expected 77
+failed
+Scan complete. Results: anomalies_depth_all.ndjson (all files)

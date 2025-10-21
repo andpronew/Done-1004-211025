@@ -1,0 +1,62 @@
+File: /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_4_2.parquet
+Type: depth
+Rows scanned: 225393
+
+Warnings / Errors summary:
+  non_monotonic_ts: 0
+  lastId < firstId: 0
+  id_overlap_count: 7
+  id_gap_count: 1
+  ask_px_count (elements): 0
+  bid_px_count (elements): 0
+  ask_qty_count (elements): 0
+  bid_qty_count (elements): 0
+  has_bid_px_but_zero_count: 0
+  has_ask_px_but_zero_count: 0
+  bid_qty_zero (elements): 0
+  ask_qty_zero (elements): 0
+  bid_px_zero (elements): 0
+  ask_px_zero (elements): 0
+  crossed_book_count (per-row best_bid>=best_ask): 0
+  price_change_10x_count: 0
+  price_not_div1000_count: 0
+  qty_not_div1e8_count: 0
+  flattened_arrays_without_offsets (informational): no
+  per_row_offsets_mismatch (informational): no
+
+Detailed notes:
+  -> ID range overlaps detected (firstId <= prev.lastId).
+  -> ID gaps detected (missing delta segments between rows).
+------
+  
+  File: /home/andpro/Documents/parquet_reader/parquet_files_depth_spot/bn_depth_spot_DFUSDT_2024_8_23.parquet
+Type: depth
+Rows scanned: 127749
+
+Warnings / Errors summary:
+  non_monotonic_ts: 0
+  lastId < firstId: 0
+  id_overlap_count: 11
+  id_gap_count: 1
+  ask_px_count (elements): 0
+  bid_px_count (elements): 0
+  ask_qty_count (elements): 0
+  bid_qty_count (elements): 0
+  has_bid_px_but_zero_count: 0
+  has_ask_px_but_zero_count: 0
+  bid_qty_zero (elements): 0
+  ask_qty_zero (elements): 0
+  bid_px_zero (elements): 0
+  ask_px_zero (elements): 0
+  crossed_book_count (per-row best_bid>=best_ask): 0
+  price_change_10x_count: 0
+  price_not_div1000_count: 0
+  qty_not_div1e8_count: 0
+  flattened_arrays_without_offsets (informational): no
+  per_row_offsets_mismatch (informational): no
+
+Detailed notes:
+  -> ID range overlaps detected (firstId <= prev.lastId).
+  -> ID gaps detected (missing delta segments between rows).
+
+----

@@ -1,0 +1,72 @@
+=== Andr Bot Project Context ===
+Date: 2025-08-21
+
+Project: Andr trading bot (Binance Testnet)
+Language: C++
+Compiler/Build: g++ via CMake, out-of-source build in build/
+
+Directory Structure:
+- /bot/
+    - main.cpp
+    - config.json
+    - CMakeLists.txt
+- /bot/src/
+    - bot.cpp          // main logic, run_bot() here
+    - binance_client.cpp
+    - ladder_strategy.cpp
+- /bot/include/
+    - binance_client.hpp
+    - ladder_strategy.h
+    - strategy.h
+    - iexchange.h
+    - mock_exchange.h
+- /bot/external/
+    - json.hpp         // nlohmann/json single header
+- /bot/strategies/
+    - ladder_strategy.cpp / .hpp
+
+Config.json values:
+{
+  "api_key": "YOUR_API_KEY",
+  "secret_key": "YOUR_SECRET_KEY",
+  "sandbox": true,
+  "symbol": "BTCFDUSD",
+  "ladder_size": 5,
+  "ladder_step": 1.0,
+  "order_size": 0.0001,
+  "poll_interval": 5
+}
+
+Key fixes applied:
+1. BinanceClient:
+   - place_order() overloads added
+   - place_limit_order() implemented
+   - is_zero_commission_pair() made PUBLIC
+   - Logging restored to logs/ folder
+2. LadderStrategy:
+   - Now uses BinanceClient public methods
+   - Reads order_size, ladder_step, poll_interval from config.json
+3. bot.cpp:
+   - Removed hardcoded numeric parameters
+   - Uses config.json values
+   - Calls BinanceClient public methods only
+4. Logging:
+   - Full logging to logs/bot_YYYY-MM-DD_HHMMSS.txt
+   - Logs responses from API, open orders, and order placement
+
+Current Status:
+- Sandbox orders tested
+- LadderStrategy running for BTCUSDT
+- Bot main loop implemented
+- All API calls return data correctly
+- Logging matches previous format (timestamp | LEVEL | ACTION | ...)
+
+Notes:
+- All numeric parameters now come from config.json
+- JSON parsing via nlohmann/json (json.hpp)
+- Make sure build/ folder is clean before rebuilding
+- Sandbox mode enabled in config.json
+- Bot runs indefinitely in run_bot() loop
+
+=== End of Context ===
+
