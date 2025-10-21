@@ -1,0 +1,310 @@
+____Forward_______________
+b.ask_volume = 4.52576
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459312
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52576
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459312
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52576
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459312
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52582
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459318
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52534
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459269
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52582
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459318
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52582
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459318
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52582
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459318
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52588
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459324
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
+____Forward_______________
+b.ask_volume = 4.52588
+x.ask_volume = 293.6
+x.ask_price = 5.33e-06
+z.bid_volume = 243.6
+z.bid_price = 0.5402
+max_usdt_to_btc = 459324
+max_btc_to_xtz = 0.00156489
+max_xtz_to_usdt = 131.593
+max_xtz_from_btc_in_usdt = 0.000845352
+max_capital_direct = 0.000845352
+usdt_to_btc with fee = 8.3233e-09
+btc_to_xtz with fee = 0.00156042
+xtz_to_usdt with fee = 0.000842309
+profit_direct = -3.04365e-06
+limit_reason = -
+___________________
+____Reverse_______________
+z.ask_volume = 141.2
+x.bid_volume = 5095.5
+b.ask_price = 101488
+max_usdt_to_xtz = 76.2904
+max_xtz_to_btc = 0.0271081
+max_xtz_to_btc in usdt = 2751.15
+max_capital_reverse = 76.2904
+usdt_to_xtz2 = 141.094
+xtz_to_btc2 = 0.000750058
+btc_to_usdt2 = 76.065
+profit_reverse = -0.225324
+limit_reason = XTZ ask vol
+___________________
