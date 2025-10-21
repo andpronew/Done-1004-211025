@@ -1,0 +1,255 @@
+./my_btcblockchain_parcing_new2
+Bitcoin-address: 1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F
+TXID: "8e5e6b898750a7afbe683a953fbf30bd990bb57ccd2d904c76df29f61054e743"
+Размер: 521 vB
+Блок: 643714
+Время: 2020-08-14 17:24:59 UTC
+--------------------
+TXID: "b357ef869a27affd4442e57367396dc404b5757da117d8903ef196fd021b57bc"
+Размер: 436 vB
+Блок: 183579
+Время: 2012-06-08 16:28:26 UTC
+--------------------
+TXID: "95872d224d3f8e9da7a6d62f8c478897c6f0da82178c6e88e9cedf6c1d2a0ce1"
+Размер: 259 vB
+Блок: 183546
+Время: 2012-06-08 10:45:47 UTC
+--------------------
+TXID: "7445b79c8293dcacb1af66163cdb70fcfe7aca4858ad7653e6fae8f4f139db4b"
+Размер: 257 vB
+Блок: 180872
+Время: 2012-05-20 07:48:13 UTC
+--------------------
+TXID: "92b155a730680b0fb8df2fd14e27d9db3f29ca64648f6a1c80ec0b5770f3a88f"
+Размер: 257 vB
+Блок: 180651
+Время: 2012-05-18 19:15:14 UTC
+--------------------
+TXID: "7a9884839ce6925f9b490b00d52f4a5cd869d431c837ff59acd03b6c444ab05b"
+Размер: 439 vB
+Блок: 178877
+Время: 2012-05-06 08:58:46 UTC
+--------------------
+TXID: "599e47a8114fe098103663029548811d2651991b62397e057f0c863c2bc9f9ea"
+Размер: 257 vB
+Блок: 178581
+Время: 2012-05-04 13:32:23 UTC
+--------------------
+TXID: "dc95140fced008f892249144b138b0d3d992a02ff6be65a2efbeb0ce34bb9d1d"
+Размер: 438 vB
+Блок: 176515
+Время: 2012-04-20 23:27:52 UTC
+--------------------
+TXID: "6f0d38ccc40cce1c4955eeb063579bfc8a9e9c11d23018c7df4cda7c31bc6c9b"
+Размер: 223 vB
+Блок: 176305
+Время: 2012-04-19 14:57:21 UTC
+--------------------
+TXID: "1bd9f150b5cd2a649a9321269dc6a1e00b7a565c0967aa687efc7ab10f2f5f6d"
+Размер: 470 vB
+Блок: 176285
+Время: 2012-04-19 12:13:40 UTC
+--------------------
+TXID: "ac575d67a009457136b4a9d0981e39f346f3cacd159cab249299b40e546beaa5"
+Размер: 223 vB
+Блок: 176274
+Время: 2012-04-19 10:14:50 UTC
+--------------------
+TXID: "6cb7a76328ecbbe70afc54badd840d01752eec809b98c643b2f3918d5d098bf0"
+Размер: 975 vB
+Блок: 176083
+Время: 2012-04-18 00:47:37 UTC
+--------------------
+TXID: "835e32e129d236b25155278a1d2aa6260e766933bbcedeff7d546c4f0e0398b1"
+Размер: 257 vB
+Блок: 175993
+Время: 2012-04-17 08:59:40 UTC
+--------------------
+TXID: "cb2c0d9c5ad03553158827ec6842128bc73d5b2fe068e87805860c7b47193aad"
+Размер: 258 vB
+Блок: 175879
+Время: 2012-04-16 12:33:15 UTC
+--------------------
+TXID: "b157d03b92a932499aa69dd15b5b1c182b8a19a1463df3e492ebc8c27a6b6e6b"
+Размер: 2943 vB
+Блок: 175822
+Время: 2012-04-16 03:14:15 UTC
+--------------------
+TXID: "e4ce2b649d082c3e283042f73e13f213e410e024668694ef1cd835d6cf897cc1"
+Размер: 258 vB
+Блок: 175794
+Время: 2012-04-15 23:53:55 UTC
+--------------------
+TXID: "9dc4cb433159b5aa61751c0135a9178ef34bdc5fc0d250776b61bc1d6a832470"
+Размер: 257 vB
+Блок: 175757
+Время: 2012-04-15 14:43:16 UTC
+--------------------
+TXID: "2dfff0ba66c8ea264143559111880e2f2be8d346654e42d2b05394d595b108b0"
+Размер: 258 vB
+Блок: 175748
+Время: 2012-04-15 12:36:04 UTC
+--------------------
+TXID: "116c609df6200cb92c9219ba70de8e49593974bd746872b211e8d45dd7de861a"
+Размер: 257 vB
+Блок: 175683
+Время: 2012-04-14 22:42:56 UTC
+--------------------
+TXID: "e4719eeb14823f410457e57ce9b75cb75d33faafef35e9842a719cfcbc28d384"
+Размер: 618 vB
+Блок: 175343
+Время: 2012-04-12 07:31:58 UTC
+--------------------
+TXID: "c646c1916dc8a5b807952900b4c9b8821cd8c51f28fa101b6f68ea6afbe5e7f1"
+Размер: 2944 vB
+Блок: 175315
+Время: 2012-04-12 02:50:10 UTC
+--------------------
+TXID: "5f6a9b8b565e5b714ec63218a1d5ae0b56a1ad673d9b90ee113b986557e4640d"
+Размер: 258 vB
+Блок: 174618
+Время: 2012-04-07 06:33:00 UTC
+--------------------
+TXID: "7f43bf5e99ee51233cd2dc0058f33d54ae046fab4c4036b0f63aabbfbff4fcec"
+Размер: 436 vB
+Блок: 174554
+Время: 2012-04-06 19:23:22 UTC
+--------------------
+TXID: "fd1e014c760e9758fc1fccf5eaa7b9bb95243f95149162de682ba30f184f04e8"
+Размер: 259 vB
+Блок: 174503
+Время: 2012-04-06 10:04:25 UTC
+--------------------
+TXID: "9a90c2797c61ac55ad13c7e8e3eee9835378e44dcc9474f038b23d2756527d47"
+Размер: 4229 vB
+Блок: 174412
+Время: 2012-04-05 15:31:27 UTC
+--------------------
+andpro@andpro-Lenovo-G580:~/study$ g++ my_btcblockchain_parcing_new2.cpp -o my_btcblockchain_parcing_new2 -lcurl -pthread
+andpro@andpro-Lenovo-G580:~/study$ ./my_btcblockchain_parcing_new2
+Bitcoin-address: 1AJbsFZ64EpEfS5UAjAfcUG8pH8Jn3rn1F
+TXID (Transaction ID): "8e5e6b898750a7afbe683a953fbf30bd990bb57ccd2d904c76df29f61054e743"
+Size: 521 vB
+Block: 643714
+Time: 2020-08-14 17:24:59 UTC
+--------------------
+TXID (Transaction ID): "b357ef869a27affd4442e57367396dc404b5757da117d8903ef196fd021b57bc"
+Size: 436 vB
+Block: 183579
+Time: 2012-06-08 16:28:26 UTC
+--------------------
+TXID (Transaction ID): "95872d224d3f8e9da7a6d62f8c478897c6f0da82178c6e88e9cedf6c1d2a0ce1"
+Size: 259 vB
+Block: 183546
+Time: 2012-06-08 10:45:47 UTC
+--------------------
+TXID (Transaction ID): "7445b79c8293dcacb1af66163cdb70fcfe7aca4858ad7653e6fae8f4f139db4b"
+Size: 257 vB
+Block: 180872
+Time: 2012-05-20 07:48:13 UTC
+--------------------
+TXID (Transaction ID): "92b155a730680b0fb8df2fd14e27d9db3f29ca64648f6a1c80ec0b5770f3a88f"
+Size: 257 vB
+Block: 180651
+Time: 2012-05-18 19:15:14 UTC
+--------------------
+TXID (Transaction ID): "7a9884839ce6925f9b490b00d52f4a5cd869d431c837ff59acd03b6c444ab05b"
+Size: 439 vB
+Block: 178877
+Time: 2012-05-06 08:58:46 UTC
+--------------------
+TXID (Transaction ID): "599e47a8114fe098103663029548811d2651991b62397e057f0c863c2bc9f9ea"
+Size: 257 vB
+Block: 178581
+Time: 2012-05-04 13:32:23 UTC
+--------------------
+TXID (Transaction ID): "dc95140fced008f892249144b138b0d3d992a02ff6be65a2efbeb0ce34bb9d1d"
+Size: 438 vB
+Block: 176515
+Time: 2012-04-20 23:27:52 UTC
+--------------------
+TXID (Transaction ID): "6f0d38ccc40cce1c4955eeb063579bfc8a9e9c11d23018c7df4cda7c31bc6c9b"
+Size: 223 vB
+Block: 176305
+Time: 2012-04-19 14:57:21 UTC
+--------------------
+TXID (Transaction ID): "1bd9f150b5cd2a649a9321269dc6a1e00b7a565c0967aa687efc7ab10f2f5f6d"
+Size: 470 vB
+Block: 176285
+Time: 2012-04-19 12:13:40 UTC
+--------------------
+TXID (Transaction ID): "ac575d67a009457136b4a9d0981e39f346f3cacd159cab249299b40e546beaa5"
+Size: 223 vB
+Block: 176274
+Time: 2012-04-19 10:14:50 UTC
+--------------------
+TXID (Transaction ID): "6cb7a76328ecbbe70afc54badd840d01752eec809b98c643b2f3918d5d098bf0"
+Size: 975 vB
+Block: 176083
+Time: 2012-04-18 00:47:37 UTC
+--------------------
+TXID (Transaction ID): "835e32e129d236b25155278a1d2aa6260e766933bbcedeff7d546c4f0e0398b1"
+Size: 257 vB
+Block: 175993
+Time: 2012-04-17 08:59:40 UTC
+--------------------
+TXID (Transaction ID): "cb2c0d9c5ad03553158827ec6842128bc73d5b2fe068e87805860c7b47193aad"
+Size: 258 vB
+Block: 175879
+Time: 2012-04-16 12:33:15 UTC
+--------------------
+TXID (Transaction ID): "b157d03b92a932499aa69dd15b5b1c182b8a19a1463df3e492ebc8c27a6b6e6b"
+Size: 2943 vB
+Block: 175822
+Time: 2012-04-16 03:14:15 UTC
+--------------------
+TXID (Transaction ID): "e4ce2b649d082c3e283042f73e13f213e410e024668694ef1cd835d6cf897cc1"
+Size: 258 vB
+Block: 175794
+Time: 2012-04-15 23:53:55 UTC
+--------------------
+TXID (Transaction ID): "9dc4cb433159b5aa61751c0135a9178ef34bdc5fc0d250776b61bc1d6a832470"
+Size: 257 vB
+Block: 175757
+Time: 2012-04-15 14:43:16 UTC
+--------------------
+TXID (Transaction ID): "2dfff0ba66c8ea264143559111880e2f2be8d346654e42d2b05394d595b108b0"
+Size: 258 vB
+Block: 175748
+Time: 2012-04-15 12:36:04 UTC
+--------------------
+TXID (Transaction ID): "116c609df6200cb92c9219ba70de8e49593974bd746872b211e8d45dd7de861a"
+Size: 257 vB
+Block: 175683
+Time: 2012-04-14 22:42:56 UTC
+--------------------
+TXID (Transaction ID): "e4719eeb14823f410457e57ce9b75cb75d33faafef35e9842a719cfcbc28d384"
+Size: 618 vB
+Block: 175343
+Time: 2012-04-12 07:31:58 UTC
+--------------------
+TXID (Transaction ID): "c646c1916dc8a5b807952900b4c9b8821cd8c51f28fa101b6f68ea6afbe5e7f1"
+Size: 2944 vB
+Block: 175315
+Time: 2012-04-12 02:50:10 UTC
+--------------------
+TXID (Transaction ID): "5f6a9b8b565e5b714ec63218a1d5ae0b56a1ad673d9b90ee113b986557e4640d"
+Size: 258 vB
+Block: 174618
+Time: 2012-04-07 06:33:00 UTC
+--------------------
+TXID (Transaction ID): "7f43bf5e99ee51233cd2dc0058f33d54ae046fab4c4036b0f63aabbfbff4fcec"
+Size: 436 vB
+Block: 174554
+Time: 2012-04-06 19:23:22 UTC
+--------------------
+TXID (Transaction ID): "fd1e014c760e9758fc1fccf5eaa7b9bb95243f95149162de682ba30f184f04e8"
+Size: 259 vB
+Block: 174503
+Time: 2012-04-06 10:04:25 UTC
+--------------------
+TXID (Transaction ID): "9a90c2797c61ac55ad13c7e8e3eee9835378e44dcc9474f038b23d2756527d47"
+Size: 4229 vB
+Block: 174412
+Time: 2012-04-05 15:31:27 UTC
+
