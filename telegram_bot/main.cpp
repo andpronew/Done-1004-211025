@@ -5,7 +5,7 @@ using namespace TgBot;
 
 int main() {
     // 🔑 Вставь сюда токен от BotFather
-    string token = "7512848606:AAFIWzm4rwIUMnVs0Rc3Tba5HXK4W26xTCg";
+    string token = "????";
 
     Bot bot(token);
 
